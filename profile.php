@@ -1,9 +1,7 @@
 <?php
 include_once './init.php';
 
-if (!isset($_SESSION['auth'])) {
-  redirect('login.php');
-}
+include app_path('middleware/auth.php');
 ?>
 <?php include './header.php' ?>
 <?php include './navbar.php' ?>
@@ -15,7 +13,7 @@ if (!isset($_SESSION['auth'])) {
         <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" height="100" width="100" />
         <p class="mt-4">Name: <?php echo $_SESSION['auth']['name']; ?></p>
         <p>Email: <?php echo $_SESSION['auth']['email']; ?></p>
-        <a href="/blog/profile-edit.php" class="mt-2 btn btn-dark">Edit Profile</a>
+        <a href="/blog01/profile-edit.php" class="mt-2 btn btn-dark">Edit Profile</a>
       </div>
     </div>
   </div>

@@ -1,35 +1,45 @@
 <?php
 include_once './init.php';
 
-if (!isset($_SESSION['auth'])) {
-  redirect('login.php');
-}
+include app_path('middleware/auth.php');
+
+$id = $_SESSION['auth']['id'];
+$sql = "SELECT * FROM users WHERE id='$id'";
+$result = mysqli_query($conn, $sql);
+$user = mysqli_fetch_assoc($result);
 
 $errors = [];
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  $password = $_POST['password'];
-  $id = $_POST['id'];
 
-  if (!$password) {
-    $errors['password'] = 'The password is required.';
-  }
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $name = $_POST['name'];
+    $password = $_POST['password'];
 
-  if (count($errors) == 0) {
-    $sql = "SELECT * FROM users WHERE `password`='$password' and `id`='$id'";
-    $result = mysqli_query($conn, $sql);
+    if (!$name) {
+        $errors['name'] = 'The name is required.';
+    }
 
-    if (mysqli_num_rows($result) > 0) {
-      $errors['alert'] = 'The password is already taken try another!';
-    } else {
-      $sql2 = "UPDATE users set password='$password' where id=$id;";
-      $result2 = mysqli_query($conn, $sql2);
-      if ($result2) {
-        $errors['success'] = 'Your changes have been successfully saved!';
+    if (!$password) {
+          $errors['password'] = 'The password is required.';
+        }
+
+    if (count($errors) == 0) {
+      $sql = "SELECT * FROM users WHERE `password`='$password' and `id`='$id'";
+      $result = mysqli_query($conn, $sql);
+
+      if (mysqli_num_rows($result) > 0) {
+        $errors['alert'] = 'The password is already taken try another!';
+      } else {
+        $sql = "UPDATE users SET `name`='$name', `password`='$password' where `id`='$id'";
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+          $errors['success'] = 'Your changes have been successfully saved!';
+        }
       }
+
     }
   }
-}
+
 
 ?>
 <?php include './header.php' ?>
@@ -50,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <div class="alert alert-warning" role="alert"><?php echo $errors['alert']; ?></div>
             <?php endif; ?>
             <div>
-              <input type="text" name="name" value="<?php echo $_SESSION['auth']['name']; ?>" class="form-control <?php if (isset($errors['name'])) : ?> is-invalid <?php endif; ?>" placeholder="Enter name">
+              <input type="text" name="name" value="<?php echo $user['name']; ?>" class="form-control <?php if (isset($errors['name'])) : ?> is-invalid <?php endif; ?>" placeholder="Enter name">
               <?php if (isset($errors['name'])) : ?>
                 <div class="invalid-feedback"><?php echo $errors['name']; ?></div>
               <?php endif; ?>
@@ -64,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="d-flex justify-content-between mt-3">
               <button type="submit" class="btn btn-primary">Update</button>
-              <a href="/blog/profile.php" class="btn btn-outline-secondary">Cancel</a>
+              <a href="/blog01/profile.php" class="btn btn-outline-secondary">Cancel</a>
             </div>
           </form>
         </div>

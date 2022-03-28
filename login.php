@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <button type="submit" class="w-100 btn btn-primary">Login</button>
             </div>
           </div>
-          <p class="mt-4 text-center text-muted">Not a member? <a href="register.php">Sign Up</a></p>
+          <p class="mt-4 text-center text-muted">Not a member? <a href="<?php echo url('register.php'); ?>">Sign Up</a></p>
         </form>
       </div>
     </div>
