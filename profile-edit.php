@@ -74,7 +74,7 @@ $errors = [];
             </div>
             <div class="d-flex justify-content-between mt-3">
               <button type="submit" class="btn btn-primary">Update</button>
-              <a href="/blog01/profile.php" class="btn btn-outline-secondary">Cancel</a>
+              <a href="/blog/profile.php" class="btn btn-outline-secondary">Cancel</a>
             </div>
           </form>
         </div>

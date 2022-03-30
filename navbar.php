@@ -14,7 +14,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mb-2 mb-lg-0" style="margin-left: auto;">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/blog01/index.php">Home</a>
+          <a class="nav-link active" aria-current="page" href="/blog/index.php">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="<?php echo url('post-create.php'); ?>">Create Post</a>
@@ -24,8 +24,8 @@
             <?php echo $user['name']; ?>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="/blog01/profile.php">Profile</a></li>
-            <li><a class="dropdown-item" href="/blog01/logout.php">Logout</a></li>
+            <li><a class="dropdown-item" href="/blog/profile.php">Profile</a></li>
+            <li><a class="dropdown-item" href="/blog/logout.php">Logout</a></li>
           </ul>
         </li>
       </ul>
