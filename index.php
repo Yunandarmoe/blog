@@ -27,7 +27,8 @@ $posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
               <small>Posted on <i><?php echo date('M d, Y', strtotime($post['date'])); ?></i> by
                 <b>
                   <?php echo $post['author']; ?>
-                </b></small>
+                </b>
+              </small>
               <div class="float-end">
                 <a href="<?php echo url('post-edit.php?post_id=' . $post['id']); ?>" class="btn btn-success">Edit</a>
                 <a href="<?php echo url('post-delete.php?post_id=' . $post['id']); ?>" class="btn btn-danger">Delete</a>
