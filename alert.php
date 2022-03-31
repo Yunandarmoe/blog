@@ -1,4 +1,4 @@
-<?php if(flash_has('success')): ?>
+<?php if (flash_has('success')) : ?>
     <div class="col-12 mt-3">
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <?php echo flash('success'); ?>
@@ -7,7 +7,7 @@
     </div>
 <?php endif; ?>
 
-<?php if(flash_has('danger')): ?>
+<?php if (flash_has('danger')) : ?>
     <div class="col-12 mt-3">
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <?php echo flash('danger'); ?>
@@ -16,7 +16,7 @@
     </div>
 <?php endif; ?>
 
-<?php if(flash_has('info')): ?>
+<?php if (flash_has('info')) : ?>
     <div class="col-12 mt-3">
         <div class="alert alert-info alert-dismissible fade show" role="alert">
             <?php echo flash('info'); ?>
@@ -25,7 +25,7 @@
     </div>
 <?php endif; ?>
 
-<?php if(flash_has('warning')): ?>
+<?php if (flash_has('warning')) : ?>
     <div class="col-12 mt-3">
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
             <?php echo flash('warning'); ?>
