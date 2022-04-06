@@ -2,10 +2,10 @@
 
 class User extends DbConnection
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
+    //public function __construct()
+    //{
+    //    parent::__construct();
+    //}
 
     public function check_login($email, $password)
     {
