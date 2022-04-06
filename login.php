@@ -17,19 +17,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors['password'] = 'The password is required.';
     }
 
-    if (count($errors) == 0) {
-        $sql = "SELECT * FROM users WHERE `email`='$email' and `password`='$password'";
-        $result = mysqli_query($conn, $sql);
+    $sql = "SELECT * FROM users WHERE `email`='$email' and `password`='$password'";
+    $user_result = mysqli_query($conn, $sql);
 
-        if ($user = mysqli_fetch_assoc($result)) {
+    if ($user = mysqli_fetch_assoc($user_result)) {
+        $_SESSION['auth'] = [
+            'id' => $user['id'],
+            'name' => $user['name'],
+            'email' => $user['email'],
+        ];
+    }
+
+    if (count($errors) == 0) {
+        $userObj = new User();
+        $sql = "SELECT * FROM users WHERE `email`='$email' and `password`='$password'";
+        $query = $userObj->connection->query($sql);
+        
+        $result = $userObj->check_login($email, $password);
+
+        if ($result) {
             $_SESSION['auth'] = [
                 'id' => $user['id'],
                 'name' => $user['name'],
                 'email' => $user['email'],
             ];
-            redirect('index.php');
+            redirect ('index.php');
         }
     }
+
+
+
 }
 
 ?>
