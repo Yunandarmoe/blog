@@ -1,7 +1,5 @@
 <?php
 
-include_once './init.php';
-
 class User extends DbConnection
 {
     public function __construct()
