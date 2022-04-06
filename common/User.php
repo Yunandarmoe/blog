@@ -1,10 +1,22 @@
 <?php
 
+include_once './init.php';
+
 class User extends DbConnection
 {
     public function __construct()
     {
         parent::__construct();
+    }
+
+    public function check_db($email, $password)
+    {
+        $sql = "SELECT * FROM users WHERE `email`='$email' and `password`='$password'";
+        $query = $this->connection->query($sql);
+
+        if ($query->num_rows > 0) {
+            redirect('index.php');
+        }
     }
 
     public function check_login($email, $password)
