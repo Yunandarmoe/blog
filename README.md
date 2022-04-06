@@ -13,9 +13,9 @@ Two ways to install the project folder in your computer
 - Create a database and import `blog.sql`
 
 - Change APP_URL in `init.php`
-  - define('APP_URL', 'http://localhost/blog-batch-1');
+  - define('APP_URL', 'http://localhost/blog');
 
-- Run in browwser http://localhost/blog-batch-1
+- Run in browwser http://localhost/blog
 
 - Login
 
