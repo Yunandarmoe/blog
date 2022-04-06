@@ -8,7 +8,7 @@ Two ways to install the project folder in your computer
 
 1. git clone `https://github.com/Yunandarmoe/blog.git`
 
-- Go to the project folder blog-batch-1
+- Go to the project folder blog
 
 - Create a database and import `blog.sql`
 
