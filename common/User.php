@@ -22,8 +22,20 @@ class User extends DbConnection
         $sql = "SELECT * FROM users WHERE `email`='$email' and `password`='$password'";
         $query = $this->connection->query($sql);
 
+        //if ($query->num_rows > 0) {
+        //    redirect('index.php');
+        //}
+        //if ($query->num_rows > 0) {
+        //    $row = $query->fetch_array();
+        //    return $row['id'];
+        //} else {
+        //    return false;
+        //}
         if ($query->num_rows > 0) {
-            redirect('index.php');
+            $row = $query->fetch_array();
+            return $row['id'];
+        } else {
+            return false;
         }
     }
 
@@ -75,6 +87,26 @@ class User extends DbConnection
         if ($query) {
             redirect('index.php');
         }
+    }
+
+    //    public function showError($id)
+    //    {
+    //        $sql = "DELETE FROM posts WHERE id='$id'";
+    //        $query = $this->connection->query($sql);
+    //
+    //        if ($query) {
+    //            redirect('index.php');
+    //        }
+    //    }
+
+    public function details($sql)
+    {
+
+        $query = $this->connection->query($sql);
+
+        $row = $query->fetch_array();
+
+        return $row;
     }
 
     public function escape_string($value)

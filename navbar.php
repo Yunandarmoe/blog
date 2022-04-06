@@ -5,6 +5,12 @@ $sql = "SELECT * FROM users WHERE id='$id'";
 $result = mysqli_query($conn, $sql);
 $user = mysqli_fetch_assoc($result);
 
+$userObj = new User();
+
+////fetch user data
+//$sql = "SELECT * FROM users WHERE id = '" . $_SESSION['user'] . "'";
+//$row = $userObj->details($sql);
+
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -23,7 +29,7 @@ $user = mysqli_fetch_assoc($result);
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <?php echo $user['name']; ?>
+                        <?php echo  $_SESSION['auth']['name']; ?>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="/blog/profile.php">Profile</a></li>

@@ -15,7 +15,7 @@ class DbConnection
     private $password = '';
     private $database = 'blog';
 
-    protected $connection;
+    public $connection;
 
     public function __construct()
     {
