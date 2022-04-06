@@ -30,9 +30,4 @@ class Session
     {
         unset($_SESSION[$key]);
     }
-
-    //public static function forget(string $key): void
-    //{
-    //    unset($_SESSION[$key]);
-    //}
 }

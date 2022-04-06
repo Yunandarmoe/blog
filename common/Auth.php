@@ -28,3 +28,6 @@ class Auth
     }
 }
 
+
+// Auth::check();
+// Auth::user();
