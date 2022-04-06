@@ -5,14 +5,17 @@ include app_path('middleware/auth.php');
 
 $_SESSION['errors'] = [];
 
+$userObj = new User();
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $title = $_POST['title'];
-    $body = $_POST['body'];
+    $title = $userObj->escape_string($_POST['title']);
+    $body = $userObj->escape_string($_POST['body']);
     $userId = $_SESSION['auth']['id'];
 
     if (!$title) {
         $_SESSION['errors']['title'] = 'The title is required.';
     }
+
     if (!$body) {
         $_SESSION['errors']['body'] = 'The content is required.';
     }
@@ -21,8 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         redirect('post-create.php');
     }
 
-    $sql = "INSERT INTO posts (`title`, `body`, `user_id`) VALUES ('$title', '$body', '$userId')";
-    $result = mysqli_query($conn, $sql);
+    $result = $userObj->check_post_store($title, $body, $userId);
 }
 
 redirect('index.php');

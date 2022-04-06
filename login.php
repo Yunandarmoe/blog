@@ -3,9 +3,11 @@ include_once './init.php';
 
 $errors = [];
 
+$userObj = new User();
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = $userObj->escape_string($_POST['email']);
+    $password = $userObj->escape_string($_POST['password']);
 
     if (!$email) {
         $errors['email'] = 'The email is required.';
@@ -26,8 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ];
             redirect('index.php');
         }
+        
     }
 }
+
 ?>
 
 <?php include './header.php' ?>

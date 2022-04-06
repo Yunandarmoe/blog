@@ -1,5 +1,5 @@
 <?php
 
-if (!isset($_SESSION['auth'])) {
+if (Auth::guest()) {
     redirect('login.php');
 }

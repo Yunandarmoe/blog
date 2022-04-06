@@ -4,15 +4,17 @@ include_once './init.php';
 
 $errors = [];
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+$userObj = new User();
 
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $name = $userObj->escape_string($_POST['name']);
+    $email = $userObj->escape_string($_POST['email']);
+    $password = $userObj->escape_string($_POST['password']);
 
     if (!$name) {
         $errors['name'] = 'The name is required.';
     }
+
     if (!$email) {
         $errors['email'] = 'The email is required.';
     }
@@ -21,8 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (count($errors) == 0) {
-        $sql = "INSERT INTO users (`name`, `email`, `password`) VALUES ('$name', '$email', '$password')";
-        $result = mysqli_query($conn, $sql);
+        $result = $userObj->check_register($name, $email, $password);
+
         if ($result) {
             redirect('login.php');
         }

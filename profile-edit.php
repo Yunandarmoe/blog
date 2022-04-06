@@ -10,10 +10,11 @@ $user = mysqli_fetch_assoc($result);
 
 $errors = [];
 
+$userObj = new User();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST['name'];
-    $password = $_POST['password'];
+    $name = $userObj->escape_string($_POST['name']);
+    $password = $userObj->escape_string($_POST['password']);
 
     if (!$name) {
         $errors['name'] = 'The name is required.';
@@ -24,17 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (count($errors) == 0) {
-        $sql = "SELECT * FROM users WHERE `password`='$password' and `id`='$id'";
+        $sql = "UPDATE users SET `name`='$name', `password`='$password' where `id`='$id'";
         $result = mysqli_query($conn, $sql);
 
-        if (mysqli_num_rows($result) > 0) {
-            $errors['alert'] = 'The password is already taken try another!';
-        } else {
-            $sql = "UPDATE users SET `name`='$name', `password`='$password' where `id`='$id'";
-            $result = mysqli_query($conn, $sql);
-            if ($result) {
-                $errors['success'] = 'Your changes have been successfully saved!';
-            }
+        if ($result) {
+            $errors['success'] = 'Your changes have been successfully saved!';
         }
     }
 }

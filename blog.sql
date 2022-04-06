@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2022 at 11:22 AM
+-- Generation Time: Apr 06, 2022 at 06:26 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -40,13 +40,11 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `title`, `body`, `user_id`, `date`) VALUES
-(14, 'Autem ab aliquam inc', 'Changes changes Autem ab aliquam inc              ', 24, '2022-03-28 19:12:51'),
-(15, 'Qui est labore quo n', 'lorem lorem Qui est labore quo n              ', 24, '2022-03-28 19:27:19'),
-(16, 'Dolor do nisi laboru', '                Dolor do nisi laboru     lorem change\r\n         ', 26, '2022-03-30 11:31:20'),
-(17, 'Sit ad aut enim vol', 'Et incididunt nisi t', 26, '2022-03-30 11:33:44'),
-(18, 'Nulla sequi corporis', 'Qui qui eveniet nul', 28, '2022-03-30 11:43:47'),
-(19, 'Libero sit minim iu', 'Maxime suscipit occa', 28, '2022-03-30 15:29:15'),
-(20, 'Quia officia ex cum ', 'Nisi explicabo Nece', 28, '2022-03-30 15:29:27');
+(55, 'Sunt non omnis sed ', 'Neque consectetur ut', 28, '2022-04-06 10:19:36'),
+(56, 'Quis nobis perferend', 'Repellendus Officii', 28, '2022-04-06 10:31:41'),
+(58, 'Inventore natus quib', 'Changes Inventore natus quib              ', 43, '2022-04-06 10:44:02'),
+(59, 'Est odio aut volupt', 'Eum non tempora at d', 43, '2022-04-06 10:52:30'),
+(60, 'Dicta in nostrum eum', 'Aliqua Fugit digni', 44, '2022-04-06 10:56:38');
 
 -- --------------------------------------------------------
 
@@ -67,10 +65,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `date`) VALUES
-(24, 'Emily Chris', 'emily@gmail.com', 'emily123', '2022-03-22 12:39:09'),
-(25, 'John Johnny', 'john@gmail.com', 'johnpassword', '2022-03-22 12:47:15'),
-(26, 'Katherine19', 'katherine@gmail.com', '123', '2022-03-23 14:38:21'),
-(28, 'Mg Mg19', 'mgmg@gmail.com', 'mgmg19', '2022-03-30 11:42:55');
+(28, 'Mg Mg', 'mgmg@gmail.com', 'mgmg123', '2022-03-30 11:42:55'),
+(43, 'Aye Aye', 'ayeaye@gmail.com', '123', '2022-04-06 10:43:42'),
+(44, 'Emily Chris', 'emily@gmail.com', 'emily123', '2022-04-06 10:56:18');
 
 --
 -- Indexes for dumped tables
@@ -97,13 +94,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

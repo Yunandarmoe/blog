@@ -8,9 +8,12 @@ if (!isset($_GET['post_id'])) {
     redirect('index.php');
 }
 
+$userObj = new User();
+
 $id = $_GET['post_id'];
 $sql = "DELETE FROM posts WHERE id='$id'";
 $result = mysqli_query($conn, $sql);
+
 if ($result) {
     flash('success', 'A post was deleted successfully.');
 } else {

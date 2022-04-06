@@ -1,8 +1,10 @@
 <?php
+
 $id = $_SESSION['auth']['id'];
 $sql = "SELECT * FROM users WHERE id='$id'";
 $result = mysqli_query($conn, $sql);
 $user = mysqli_fetch_assoc($result);
+
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">

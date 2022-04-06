@@ -5,10 +5,12 @@ include app_path('middleware/auth.php');
 
 $_SESSION['errors'] = [];
 
+$userObj = new User();
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $id = $_POST['post_id'];
-    $title = $_POST['title'];
-    $body = $_POST['body'];
+    $id = $userObj->escape_string($_POST['post_id']);
+    $title = $userObj->escape_string($_POST['title']);
+    $body = $userObj->escape_string($_POST['body']);
 
     if (!$title) {
         $_SESSION['errors']['title'] = 'The title is required.';
@@ -23,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $sql = "UPDATE posts SET title='$title', body='$body' WHERE id='$id'";
     $result = mysqli_query($conn, $sql);
+
     if ($result) {
         flash('success', 'A post was updated successfully.');
     } else {
