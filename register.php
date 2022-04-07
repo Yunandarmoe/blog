@@ -11,13 +11,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $userObj->escape_string($_POST['email']);
     $password = $userObj->escape_string($_POST['password']);
 
+    $obj = new User($_POST['email'], $_POST['password'], $_POST['name']);
+    $obj->check();
+    $erroremail = $obj->erroremail;
+    $errorpassword = $obj->errorpassword;
+    $errorname = $obj->errorname;
+
     if (!$name) {
-        $errors['name'] = 'The name is required.';
+        $errors['name'] = 'The email is required.';
     }
 
     if (!$email) {
-        $errors['email'] = 'The email is required.';
+        $errors['email'] = 'The password is required.';
     }
+
     if (!$password) {
         $errors['password'] = 'The password is required.';
     }
@@ -45,23 +52,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div>
                             <label for="name" class="form-label">Name</label>
                             <input type="text" name="name" class="form-control  <?php if (isset($errors['name'])) : ?> is-invalid <?php endif; ?>">
-                            <?php if (isset($errors['name'])) : ?>
-                                <div class="invalid-feedback"><?php echo $errors['name']; ?></div>
-                            <?php endif; ?>
+                            <div class="error mt-2" style="color: #DC3545;"><?php echo $errorname; ?></div>
                         </div>
                         <div class="mt-3">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" name="email" class="form-control  <?php if (isset($errors['email'])) : ?> is-invalid <?php endif; ?>">
-                            <?php if (isset($errors['email'])) : ?>
-                                <div class="invalid-feedback"><?php echo $errors['email']; ?></div>
-                            <?php endif; ?>
+                            <div class="error mt-2" style="color: #DC3545;"><?php echo $erroremail; ?></div>
                         </div>
                         <div class="mt-3">
                             <label for="password" class="form-label">Password</label>
                             <input type="password" name="password" class="form-control  <?php if (isset($errors['password'])) : ?> is-invalid <?php endif; ?>">
-                            <?php if (isset($errors['password'])) : ?>
-                                <div class="invalid-feedback"><?php echo $errors['password']; ?></div>
-                            <?php endif; ?>
+                            <div class="error mt-2" style="color: #DC3545;"><?php echo $errorpassword; ?></div>
                         </div>
                         <div class="mt-4">
                             <button type="submit" class="w-100 btn btn-primary">Signup</button>

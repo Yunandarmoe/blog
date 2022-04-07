@@ -13,6 +13,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $body = $userObj->escape_string($_POST['body']);
     $userId = $_SESSION['auth']['id'];
 
+    $obj = new User();
+    $obj->check();
+    $errortitle = $obj->errortitle;
+    $errorbody = $obj->errorbody;
+
     if (!$title) {
         $_SESSION['errors']['title'] = 'The title is required.';
     }

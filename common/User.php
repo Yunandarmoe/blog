@@ -89,15 +89,52 @@ class User extends DbConnection
         }
     }
 
-    //    public function showError($id)
-    //    {
-    //        $sql = "DELETE FROM posts WHERE id='$id'";
-    //        $query = $this->connection->query($sql);
-    //
-    //        if ($query) {
-    //            redirect('index.php');
-    //        }
-    //    }
+    public 
+    $email, 
+    $password, 
+    $name, 
+    $title,
+    $body,
+    $erroremail = '', 
+    $errorpassword = '', 
+    $errorname = '',
+    $errortitle = '',
+    $errorbody = '';
+
+    public function __constructor($errorE, $errorP, $errorN, $errorT, $errorB)
+    {
+        $this->email = $errorE;
+        $this->password = $errorP;
+        $this->username = $errorN;
+        $this->title = $errorT;
+        $this->body = $errorB;
+    }
+
+    public function check()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (empty($this->email)) {
+                $this->erroremail = 'The email is required.';
+            }
+
+            if (empty($this->password)) {
+                $this->errorpassword = 'The password is required';
+            }
+
+            if (empty($this->name)) {
+                $this->errorname = 'The name is required';
+            }
+
+            if (empty($this->title)) {
+                $this->errortitle = 'The title is required';
+            }
+
+            if (empty($this->body)) {
+                $this->errorbody = 'The body is required';
+            }
+        }
+    }
+
 
     public function details($sql)
     {
@@ -114,3 +151,11 @@ class User extends DbConnection
         return $this->connection->real_escape_string($value);
     }
 }
+
+$obj = new User();
+$obj->check();
+$erroremail = $obj->erroremail;
+$errorpassword = $obj->errorpassword;
+$errorname = $obj->errorname;
+$errortitle = $obj->errortitle;
+$errorbody = $obj->errorbody;
