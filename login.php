@@ -66,12 +66,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="mt-3">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" name="email" class="form-control <?php if (isset($errors['email'])) : ?> is-invalid <?php endif; ?>" placeholder="Enter email">
-                            <div class="error mt-2" style="color: #DC3545;"><?php echo $erroremail; ?></div>
+                            <div class="invalid-feedback" style="color: #DC3545;"><?php echo $erroremail; ?></div>
                         </div>
                         <div class="mt-3">
                             <label for="username" class="form-label">Password</label>
                             <input type="password" name="password" class="form-control <?php if (isset($errors['password'])) : ?> is-invalid <?php endif; ?>" placeholder="Enter password">
-                            <div class="error" style="color: #DC3545;"><?php echo $errorpassword; ?></p>
+                            <div class="invalid-feedback" style="color: #DC3545;"><?php echo $errorpassword; ?></p>
 
                             </div>
                             <div class="mt-4">

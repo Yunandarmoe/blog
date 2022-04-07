@@ -52,17 +52,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div>
                             <label for="name" class="form-label">Name</label>
                             <input type="text" name="name" class="form-control  <?php if (isset($errors['name'])) : ?> is-invalid <?php endif; ?>">
-                            <div class="error mt-2" style="color: #DC3545;"><?php echo $errorname; ?></div>
+                            <div class="invalid-feedback" style="color: #DC3545;"><?php echo $errorname; ?></div>
                         </div>
                         <div class="mt-3">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" name="email" class="form-control  <?php if (isset($errors['email'])) : ?> is-invalid <?php endif; ?>">
-                            <div class="error mt-2" style="color: #DC3545;"><?php echo $erroremail; ?></div>
+                            <div class="invalid-feedback" style="color: #DC3545;"><?php echo $erroremail; ?></div>
                         </div>
                         <div class="mt-3">
                             <label for="password" class="form-label">Password</label>
                             <input type="password" name="password" class="form-control  <?php if (isset($errors['password'])) : ?> is-invalid <?php endif; ?>">
-                            <div class="error mt-2" style="color: #DC3545;"><?php echo $errorpassword; ?></div>
+                            <div class="invalid-feedback" style="color: #DC3545;"><?php echo $errorpassword; ?></div>
                         </div>
                         <div class="mt-4">
                             <button type="submit" class="w-100 btn btn-primary">Signup</button>

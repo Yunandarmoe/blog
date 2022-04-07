@@ -21,16 +21,12 @@ include app_path('middleware/auth.php');
                         <div class="mb-3">
                             <label class="form-label">Post title</label>
                             <input type="text" name="title" class="form-control <?php if (isset($_SESSION['errors']['title'])) : ?> is-invalid <?php endif; ?>" placeholder="Enter Title" />
-                            <?php if (isset($_SESSION['errors']['title'])) : ?>
-                                <div class="invalid-feedback"><?php echo $_SESSION['errors']['title']; ?></div>
-                            <?php endif; ?>
+                            <div class="invalid-feedback"><?php echo $_SESSION['errors']['title']; ?></div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Write your post</label>
                             <textarea class="form-control <?php if (isset($_SESSION['errors']['body'])) : ?> is-invalid <?php endif; ?>" rows="5" name="body"></textarea>
-                            <?php if (isset($_SESSION['errors']['title'])) : ?>
-                                <div class="invalid-feedback"><?php echo $_SESSION['errors']['title']; ?></div>
-                            <?php endif; ?>
+                            <div class="invalid-feedback"><?php echo $_SESSION['errors']['body']; ?></div>
                         </div>
                         <div class="text-end">
                             <button type="submit" class="btn btn-primary ">Create</button>
