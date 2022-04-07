@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2022 at 06:26 AM
+-- Generation Time: Apr 07, 2022 at 08:33 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -40,11 +40,12 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `title`, `body`, `user_id`, `date`) VALUES
-(55, 'Sunt non omnis sed ', 'Neque consectetur ut', 28, '2022-04-06 10:19:36'),
-(56, 'Quis nobis perferend', 'Repellendus Officii', 28, '2022-04-06 10:31:41'),
-(58, 'Inventore natus quib', 'Changes Inventore natus quib              ', 43, '2022-04-06 10:44:02'),
-(59, 'Est odio aut volupt', 'Eum non tempora at d', 43, '2022-04-06 10:52:30'),
-(60, 'Dicta in nostrum eum', 'Aliqua Fugit digni', 44, '2022-04-06 10:56:38');
+(79, 'Quod recusandae Ill', 'Maiores rerum elit ', 68, '2022-04-06 16:48:11'),
+(80, 'Eiusmod aut eum do c', 'Nesciunt nobis pari', 70, '2022-04-07 08:09:41'),
+(84, 'Mollitia eos et qui ', 'Praesentium minima a', 88, '2022-04-07 11:27:27'),
+(85, 'Tenetur voluptate id', 'Dicta quis illum co', 88, '2022-04-07 11:28:11'),
+(88, 'Inventore quo sed as', 'Sed et nemo incidunt', 89, '2022-04-07 11:30:40'),
+(90, 'Officia placeat adi', 'In dolorem eaque ut ', 88, '2022-04-07 12:55:53');
 
 -- --------------------------------------------------------
 
@@ -65,9 +66,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `date`) VALUES
-(28, 'Mg Mg', 'mgmg@gmail.com', 'mgmg123', '2022-03-30 11:42:55'),
-(43, 'Aye Aye', 'ayeaye@gmail.com', '123', '2022-04-06 10:43:42'),
-(44, 'Emily Chris', 'emily@gmail.com', 'emily123', '2022-04-06 10:56:18');
+(68, 'Aye Aye', 'ayeaye@gmail.com', 'ayeaye123', '2022-04-06 16:47:35'),
+(70, 'Mg Mg', 'mgmg@gmail.com', 'mgmg123', '2022-04-07 08:09:29'),
+(88, 'Emily Chris', 'emily@gmail.com', 'emily123', '2022-04-07 10:37:45'),
+(89, 'Mya Mya', 'myamya@gmail.com', 'myamya123', '2022-04-07 11:30:21'),
+(90, '', '', '', '2022-04-07 11:56:32');
 
 --
 -- Indexes for dumped tables
@@ -94,13 +97,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
