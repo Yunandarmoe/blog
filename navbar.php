@@ -5,12 +5,6 @@ $sql = "SELECT * FROM users WHERE id='$id'";
 $result = mysqli_query($conn, $sql);
 $user = mysqli_fetch_assoc($result);
 
-$userObj = new User();
-
-////fetch user data
-//$sql = "SELECT * FROM users WHERE id = '" . $_SESSION['user'] . "'";
-//$row = $userObj->details($sql);
-
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">

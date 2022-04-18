@@ -23,11 +23,18 @@ class Auth
 
             return $user;
         }
-
         return null;
+    }
+
+    public static function logout()
+    {
+        if (isset($_SESSION['auth'])) {
+            unset($_SESSION['auth']);
+        }
     }
 }
 
 
-// Auth::check();
-// Auth::user();
+//Auth::check();
+//Auth::user();
+//Auth::logout();

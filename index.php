@@ -7,10 +7,6 @@ $sql = "SELECT posts.*, users.name as author FROM posts LEFT JOIN users ON users
 $result = mysqli_query($conn, $sql);
 $posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-
-$userObj = new User();
-
-
 ?>
 
 <?php include './header.php' ?>

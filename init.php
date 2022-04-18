@@ -10,3 +10,4 @@ include_once './db.php';
 include_once './common/Session.php';
 include_once './common/Auth.php';
 include_once './common/User.php';
+include_once './common/Error.php';

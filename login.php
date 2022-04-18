@@ -2,46 +2,30 @@
 
 include_once './init.php';
 
-$errors = [];
+$errors = new ErrorBag;
 
-$userObj = new User();
+$errorname = $errors->put('name', 'The name is required');
+$erroremail = $errors->put('email', 'The email is required');
+$errorpassword = $errors->put('password', 'The password is required');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $email = $userObj->escape_string($_POST['email']);
-    $password = $userObj->escape_string($_POST['password']);
 
-    $obj = new User($_POST['email'], $_POST['password']);
-    $obj->check();
-    $erroremail = $obj->erroremail;
-    $errorpassword = $obj->errorpassword;
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
     if (!$email) {
-        $errors['email'] = 'The email is required.';
+        $erroremail = $errors->get('email');
     }
 
     if (!$password) {
-        $errors['password'] = 'The password is required.';
+        $errorpassword = $errors->get('password');
     }
 
-    $sql = "SELECT * FROM users WHERE `email`='$email' and `password`='$password'";
-    $user_result = mysqli_query($conn, $sql);
-
-    if ($user = mysqli_fetch_assoc($user_result)) {
-        $_SESSION['auth'] = [
-            'id' => $user['id'],
-            'name' => $user['name'],
-            'email' => $user['email'],
-        ];
-    }
-
-    if (count($errors) == 0) {
-        $userObj = new User();
+    if ($email && $password) {
         $sql = "SELECT * FROM users WHERE `email`='$email' and `password`='$password'";
-        $query = $userObj->connection->query($sql);
+        $result = mysqli_query($conn, $sql);
 
-        $result = $userObj->check_login($email, $password);
-
-        if ($result) {
+        if ($user = mysqli_fetch_assoc($result)) {
             $_SESSION['auth'] = [
                 'id' => $user['id'],
                 'name' => $user['name'],
@@ -65,20 +49,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="form-group">
                         <div class="mt-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" name="email" class="form-control <?php if (isset($errors['email'])) : ?> is-invalid <?php endif; ?>" placeholder="Enter email">
-                            <div class="invalid-feedback" style="color: #DC3545;"><?php echo $erroremail; ?></div>
+                            <input type="email" name="email" class="form-control" placeholder="Enter email">
+                            <?php if ($errors->has('email')) : ?>
+                                <div class="error mt-2" style="color: #DC3545;"><?php echo $erroremail; ?></div>
+                            <?php endif; ?>
                         </div>
                         <div class="mt-3">
-                            <label for="username" class="form-label">Password</label>
-                            <input type="password" name="password" class="form-control <?php if (isset($errors['password'])) : ?> is-invalid <?php endif; ?>" placeholder="Enter password">
-                            <div class="invalid-feedback" style="color: #DC3545;"><?php echo $errorpassword; ?></p>
-
-                            </div>
-                            <div class="mt-4">
-                                <button type="submit" class="w-100 btn btn-primary">Login</button>
-                            </div>
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" name="password" class="form-control" placeholder="Enter password">
+                            <?php if ($errors->has('password')) : ?>
+                                <div class="error mt-2" style="color: #DC3545;"><?php echo $errorpassword; ?></div>
+                            <?php endif; ?>
                         </div>
-                        <p class="mt-4 text-center text-muted">Not a member? <a href="<?php echo url('register.php'); ?>">Sign Up</a></p>
+                        <div class="mt-4">
+                            <button type="submit" class="w-100 btn btn-primary">Login</button>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-center text-muted">Not a member? <a href="<?php echo url('register.php'); ?>">Sign Up</a></p>
                 </form>
             </div>
         </div>

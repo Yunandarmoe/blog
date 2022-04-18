@@ -20,13 +20,17 @@ include app_path('middleware/auth.php');
                     <form action="<?php echo url('post-store.php'); ?>" method="POST">
                         <div class="mb-3">
                             <label class="form-label">Post title</label>
-                            <input type="text" name="title" class="form-control <?php if (isset($_SESSION['errors']['title'])) : ?> is-invalid <?php endif; ?>" placeholder="Enter Title" />
-                            <div class="invalid-feedback"><?php echo $_SESSION['errors']['title']; ?></div>
+                            <input type="text" name="title" class="form-control <?php if ($errors->has('title')) : ?> is-invalid <?php endif; ?>" placeholder="Enter Title" />
+                            <?php if ($errors->has('title')) : ?>
+                                <div class="invalid-feedback"><?php echo $errors->get('title'); ?></div>
+                            <?php endif; ?>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Write your post</label>
-                            <textarea class="form-control <?php if (isset($_SESSION['errors']['body'])) : ?> is-invalid <?php endif; ?>" rows="5" name="body"></textarea>
-                            <div class="invalid-feedback"><?php echo $_SESSION['errors']['body']; ?></div>
+                            <textarea class="form-control <?php if ($errors->has('body')) : ?> is-invalid <?php endif; ?>" rows="5" name="body"></textarea>
+                            <?php if ($errors->has('body')) : ?>
+                                <div class="invalid-feedback"><?php echo $errors->get('body'); ?></div>
+                            <?php endif; ?>
                         </div>
                         <div class="text-end">
                             <button type="submit" class="btn btn-primary ">Create</button>

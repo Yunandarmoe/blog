@@ -6,18 +6,19 @@ include app_path('middleware/auth.php');
 
 $_SESSION['errors'] = [];
 
-$userObj = new User();
+//$userObj = new User();
+$errors = new ErrorBag;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $id = $userObj->escape_string($_POST['post_id']);
-    $title = $userObj->escape_string($_POST['title']);
-    $body = $userObj->escape_string($_POST['body']);
+    $id = $_POST['post_id'];
+    $title = $_POST['title'];
+    $body = $_POST['body'];
 
     if (!$title) {
-        $_SESSION['errors']['title'] = 'The title is required.';
+        $errors->put('password', 'The password');
     }
     if (!$body) {
-        $_SESSION['errors']['body'] = 'The content is required.';
+        $errors->put('body', 'The body is required');
     }
 
     if (count($_SESSION['errors']) > 0) {

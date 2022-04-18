@@ -2,36 +2,29 @@
 
 include_once './init.php';
 
-$errors = [];
-
-$userObj = new User();
+$errors = new ErrorBag;
+$errorname = $errors->put('name', 'The name is required');
+$erroremail = $errors->put('email', 'The email is required');
+$errorpassword = $errors->put('password', 'The password is required');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $userObj->escape_string($_POST['name']);
-    $email = $userObj->escape_string($_POST['email']);
-    $password = $userObj->escape_string($_POST['password']);
-
-    $obj = new User($_POST['email'], $_POST['password'], $_POST['name']);
-    $obj->check();
-    $erroremail = $obj->erroremail;
-    $errorpassword = $obj->errorpassword;
-    $errorname = $obj->errorname;
-
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    
     if (!$name) {
-        $errors['name'] = 'The email is required.';
+       $errorname = $errors->get('name');
     }
-
     if (!$email) {
-        $errors['email'] = 'The password is required.';
+        $erroremail = $errors->get('email');
     }
-
     if (!$password) {
-        $errors['password'] = 'The password is required.';
+        $errorpassword = $errors->get('password');
     }
 
-    if (count($errors) == 0) {
-        $result = $userObj->check_register($name, $email, $password);
-
+    if ($name && $email && $password) {
+        $sql = "INSERT INTO users (`name`, `email`, `password`) VALUES ('$name', '$email', '$password')";
+        $result = mysqli_query($conn, $sql);
         if ($result) {
             redirect('login.php');
         }
@@ -51,18 +44,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="form-group mt-3">
                         <div>
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" name="name" class="form-control  <?php if (isset($errors['name'])) : ?> is-invalid <?php endif; ?>">
-                            <div class="invalid-feedback" style="color: #DC3545;"><?php echo $errorname; ?></div>
+                            <input type="text" name="name" class="form-control">
+                            <?php if ($errors->has('name')) : ?>
+                                <div class="error mt-2" style="color: #DC3545;"><?php echo $errorname; ?></div>
+                            <?php endif; ?>
                         </div>
                         <div class="mt-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" name="email" class="form-control  <?php if (isset($errors['email'])) : ?> is-invalid <?php endif; ?>">
-                            <div class="invalid-feedback" style="color: #DC3545;"><?php echo $erroremail; ?></div>
+                            <input type="email" name="email" class="form-control">
+                            <?php if ($errors->has('email')) : ?>
+                                <div class="error mt-2" style="color: #DC3545;"><?php echo $erroremail; ?></div>
+                            <?php endif; ?>
                         </div>
                         <div class="mt-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" name="password" class="form-control  <?php if (isset($errors['password'])) : ?> is-invalid <?php endif; ?>">
-                            <div class="invalid-feedback" style="color: #DC3545;"><?php echo $errorpassword; ?></div>
+                            <input type="password" name="password" class="form-control">
+                            <?php if ($errors->has('password')) : ?>
+                                <div class="error mt-2" style="color: #DC3545;"><?php echo $errorpassword; ?></div>
+                            <?php endif; ?>
                         </div>
                         <div class="mt-4">
                             <button type="submit" class="w-100 btn btn-primary">Signup</button>
